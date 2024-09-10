@@ -23,10 +23,12 @@ class UserController extends Controller
     public function userInsert(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'name'     => 'required',
+            'email'    => 'required',
             'password' => 'required',
-            'role_id' => 'required',
+            'gender'   => 'required',
+            'dob'      => 'required',
+            'role_id'  => 'required',
         ]);
 
         $filename = '';
@@ -41,6 +43,8 @@ class UserController extends Controller
             'email'     => $request->input('email'),
             'password'  => bcrypt($request->input('password')),
             'phone'     => $request->input('phone'),
+            'gender'     => $request->input('gender'),
+            'dob'        => $request->input('dob'),
             'role_id'   => $request->input('role_id'),
             'image'     => $filename,
         ]);
@@ -61,6 +65,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'gender'   => 'required',
+            'dob'      => 'required',
             'role_id' => 'required',
         ]);
 
@@ -77,6 +83,8 @@ class UserController extends Controller
             'name'      => $request->input('name'),
             'email'     => $request->input('email'),
             'phone'     => $request->input('phone'),
+            'gender'     => $request->input('gender'),
+            'dob'        => $request->input('dob'),
             'role_id'   => $request->input('role_id'),
         ]);
 

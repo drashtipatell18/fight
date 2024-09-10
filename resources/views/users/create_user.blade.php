@@ -39,11 +39,37 @@
                                 <select id="role_id" name="role_id" class="form-control"> <!-- Fixed class attribute -->
                                     <option value="">Select Role</option>
                                     @foreach ($roles as $id => $name)
-                                        <option value="{{ $id }}" @if (old('role_id', isset($users->role_id) ? $users->role_id : '') == $id) selected @endif>
+                                        <option value="{{ $id }}"
+                                            @if (old('role_id', isset($users->role_id) ? $users->role_id : '') == $id) selected @endif>
                                             {{ $name }}
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="dob"
+                                    value="{{ old('dob', $users->dob ?? '') }}">
+                            </div>
+                            <!-- Gender -->
+                            <!-- Gender -->
+                            <div class="form-group">
+                                <label class="control-label mb-1">Gender</label>
+                                <div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="gender_male" name="gender"
+                                            value="male" @if (old('gender', $users->gender ?? '') == 'male') checked @endif>
+                                        <label class="form-check-label" for="gender_male" style="margin-right: 32px;">Male</label> <!-- Added margin -->
+                              
+                                        <input type="radio" class="form-check-input" id="gender_female" name="gender"
+                                            value="female" @if (old('gender', $users->gender ?? '') == 'female') checked @endif>
+                                        <label class="form-check-label" for="gender_female" style="margin-right: 32px;">Female</label> <!-- Added margin -->
+                                  
+                                        <input type="radio" class="form-check-input" id="gender_other" name="gender"
+                                            value="other" @if (old('gender', $users->gender ?? '') == 'other') checked @endif>
+                                        <label class="form-check-label" for="gender_other">Other</label>
+                                    </div>
+                                </div>
                             </div>
                             @if (isset($users) && $users->image)
                                 <img id="imagePreview" src="{{ asset('images/' . $users->image) }}" alt="Image Preview"
