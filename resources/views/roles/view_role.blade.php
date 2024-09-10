@@ -27,24 +27,21 @@
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                <tbody>
+                                <tbody> <!-- Remove the extra opening <tbody> -->
                                     @foreach ($roles as $role)
                                         <tr>
                                             <td class="text-center">{{ $role->name }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('role.edit', $role->id) }}"
-                                                    class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-
-                                                 <a href="{{ route('role.destroy', $role->id) }}"
-                                                class="btn btn-danger btn-sm" onclick="return confirmDeleteRole('{{ $role->id }}');"><i
-                                                    class="bi bi-trash3-fill"></i></a>
+                                                <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger btn-sm" onclick="return confirmDeleteRole('{{ $role->id }}');">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                </tbody>
                             </table>
+                            
                         </div>
                     </div>
                 </div>
@@ -53,16 +50,10 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable();
+<script>
+    $(document).ready(function() {
+        $('#roleTable').DataTable();
+    });
+</script>
 
-            setTimeout(function() {
-                $(".alert-success").fadeOut(1000);
-            }, 1000);
-            setTimeout(function() {
-                $(".alert-danger").fadeOut(1000);
-            }, 1000);
-        });
-    </script>
 @endpush
