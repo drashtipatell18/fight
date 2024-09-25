@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PopularPlaceController;
+use App\Http\Controllers\PlacetoRaomController;
+use App\Http\Controllers\AirPortController;
+use Illuminate\Support\Facades\Auth; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +44,24 @@ Route::post('/role/insert', [RoleController::class, 'roleStore'])->name('role.st
 Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.edit');
 Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
 Route::get('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
+
+Route::get('/popularplace', [PopularPlaceController::class, 'popularPlace'])->name('popularplace');
+Route::get('/popularplace/create', [PopularPlaceController::class, 'popularPlaceCreate'])->name('popularplace.create');
+Route::post('/popularplace/insert', [PopularPlaceController::class, 'popularPlaceStore'])->name('popularplace.store');
+Route::get('/popularplace/edit/{id}', [PopularPlaceController::class, 'popularPlaceEdit'])->name('popularplace.edit');
+Route::post('/popularplace/update/{id}', [PopularPlaceController::class, 'popularPlaceUpdate'])->name('popularplace.update');
+Route::get('/popularplace/delete/{id}', [PopularPlaceController::class, 'popularPlaceDelete'])->name('popularplace.destroy');
+
+Route::get('/placetoroam', [PlacetoRaomController::class, 'placetoroam'])->name('placetoroam');
+Route::get('/placetoroam/create', [PlacetoRaomController::class, 'placetoRoamCreate'])->name('placetoroam.create');
+Route::post('/placetoroam/insert', [PlacetoRaomController::class, 'placetoRoamStore'])->name('placetoroam.store');
+Route::get('/placetoroam/edit/{id}', [PlacetoRaomController::class, 'placetoRoamEdit'])->name('placetoroam.edit');
+Route::post('/placetoroam/update/{id}', [PlacetoRaomController::class, 'placetoRoamUpdate'])->name('placetoroam.update');
+Route::get('/placetoroam/delete/{id}', [PlacetoRaomController::class, 'placetoRoamDelete'])->name('placetoroam.destroy');
+
+Route::get('/airport', [AirPortController::class, 'airport'])->name('airport');
+Route::get('/airport/create', [AirPortController::class, 'airportCreate'])->name('airport.create');
+Route::post('/airport/insert', [AirPortController::class, 'airportStore'])->name('airport.store');
+Route::get('/airport/edit/{id}', [AirPortController::class, 'airportEdit'])->name('airport.edit');
+Route::post('/airport/update/{id}', [AirPortController::class, 'airportUpdate'])->name('airport.update');
+Route::get('/airport/delete/{id}', [AirPortController::class, 'airportDestroy'])->name('airport.destroy');
