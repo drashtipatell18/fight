@@ -62,12 +62,12 @@ class PopularPlaceController extends Controller
         ]);
         $popularplaces = popular_place::find($id);
     
-        $filename = $popularplaces->image; 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->move('images', $filename);
-        }
+            $filename = $popularplaces->image; 
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $image->move('images', $filename);
+            }
     
         $banner_image = $popularplaces->banner_image; 
         if ($request->hasFile('banner_image')) {
