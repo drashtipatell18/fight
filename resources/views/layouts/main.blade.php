@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    
+
     <!-- theme meta -->
     <meta name="theme-name" content="quixlab" />
-  
+
     <title>Fight Booking System</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png')}}">
@@ -19,7 +19,7 @@
     <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
 
 
-   
+
     {{-- <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
 
@@ -45,7 +45,7 @@
         Preloader end
     ********************-->
 
-    
+
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -72,9 +72,9 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">    
+        <div class="header">
             <div class="header-content clearfix">
-                
+
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
@@ -104,7 +104,7 @@
                                                 <i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill gradient-1">3</div>
                                             </a>
                                         </li>
-                                        
+
                                         <hr class="my-2">
                                         <li>
                                             <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
@@ -125,7 +125,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
+        <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label"></li>
@@ -154,7 +154,11 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">AirPort</span>
                         </a>
                     </li>
-                   
+                    <li>
+                        <a href="{{ route('meals')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Meals</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -171,8 +175,8 @@
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->
@@ -218,7 +222,7 @@
     <script src="{{ asset('js/dashboard/dashboard-1.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    
+
     @stack('scripts')
 
 </body>

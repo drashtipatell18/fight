@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');   
-            $table->string('description');   
-            $table->integer('price');   
-            $table->integer('type');   
+            $table->string('name');
+            $table->string('description');
+            $table->integer('price');
+            $table->integer('type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

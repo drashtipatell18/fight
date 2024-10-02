@@ -7,7 +7,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PopularPlaceController;
 use App\Http\Controllers\PlacetoRaomController;
 use App\Http\Controllers\AirPortController;
-use Illuminate\Support\Facades\Auth; 
+use App\Http\Controllers\MealsController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,15 @@ Route::post('/airport/insert', [AirPortController::class, 'airportStore'])->name
 Route::get('/airport/edit/{id}', [AirPortController::class, 'airportEdit'])->name('airport.edit');
 Route::post('/airport/update/{id}', [AirPortController::class, 'airportUpdate'])->name('airport.update');
 Route::get('/airport/delete/{id}', [AirPortController::class, 'airportDestroy'])->name('airport.destroy');
+
+// meals
+
+Route::get('/meals',[MealsController::class,'meals'])->name('meals');
+Route::get('/meals/create',[MealsController::class,'mealsCreate'])->name('meals.create');
+Route::post('/meals/insert',[MealsController::class,'mealsStore'])->name('meals.store');
+Route::get('/meals/edit/{id}',[MealsController::class,'mealsEdit'])->name('meals.edit');
+Route::post('/meals/update/{id}',[MealsController::class,'mealsUpdate'])->name('meals.update');
+Route::get('/meals/delete/{id}',[MealsController::class,'mealsDestroy'])->name('meals.destroy');
+
+
+
