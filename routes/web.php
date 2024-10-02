@@ -8,6 +8,7 @@ use App\Http\Controllers\PopularPlaceController;
 use App\Http\Controllers\PlacetoRaomController;
 use App\Http\Controllers\AirPortController;
 use App\Http\Controllers\MealsController;
+use App\Http\Controllers\PlaneMasterController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -76,5 +77,12 @@ Route::get('/meals/edit/{id}',[MealsController::class,'mealsEdit'])->name('meals
 Route::post('/meals/update/{id}',[MealsController::class,'mealsUpdate'])->name('meals.update');
 Route::get('/meals/delete/{id}',[MealsController::class,'mealsDestroy'])->name('meals.destroy');
 
+//  plane master
 
+Route::get('/planemaster',[PlaneMasterController::class,'planemaster'])->name('planemaster');
+Route::get('/planemaster/create',[PlaneMasterController::class,'planemasterCreate'])->name('planemaster.create');
+Route::post('/planemaster/insert',[PlaneMasterController::class,'planemasterStore'])->name('planemaster.store');
+Route::get('/planemaster/edit/{id}',[PlaneMasterController::class,'planemasterEdit'])->name('planemaster.edit');
+Route::post('/planemaster/update/{id}',[PlaneMasterController::class,'planemasterUpdate'])->name('planemaster.update');
+Route::get('/planemaster/delete/{id}',[PlaneMasterController::class,'planemasterDestroy'])->name('planemaster.destroy');
 

@@ -32,7 +32,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tbody>
                                     @foreach ($popularplaces as $popularplace)
                                         <tr>
                                             <td class="text-center"><img src="{{ asset('images/' . $popularplace->image) }}" class="img-fixed-height" width="100px"></td>
@@ -50,7 +49,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
                                 </tbody>
                             </table>
                         </div>

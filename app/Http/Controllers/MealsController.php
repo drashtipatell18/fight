@@ -66,6 +66,7 @@ class MealsController extends Controller
     {
         $meal = meal::find($id);
         $meal->delete();
+        session()->flash('danger', 'Meal deleted successfully!');
         return redirect()->route('meals');
     }
 }

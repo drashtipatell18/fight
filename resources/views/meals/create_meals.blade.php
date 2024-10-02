@@ -32,7 +32,15 @@
                                     <option value="non-veg" {{ old('type', $meals->type ?? '') == 'nonveg' ? 'selected' : '' }}>Non-Veg</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="text-center"> <!-- Added div to center the button -->
+                                <button type="submit" class="btn btn-primary">
+                                    @if (isset($meals))
+                                        Update
+                                    @else
+                                        Save
+                                    @endif
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

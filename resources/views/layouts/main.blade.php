@@ -159,6 +159,11 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Meals</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('planemaster')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Plane Master</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
