@@ -164,6 +164,11 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Plane Master</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('seatmaster')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Seat Master</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

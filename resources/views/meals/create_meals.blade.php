@@ -29,7 +29,7 @@
                                 <select class="form-control" id="type" name="type">
                                     <option value="">Select Type</option>
                                     <option value="veg" {{ old('type', $meals->type ?? '') == 'veg' ? 'selected' : '' }}>Veg</option>
-                                    <option value="non-veg" {{ old('type', $meals->type ?? '') == 'nonveg' ? 'selected' : '' }}>Non-Veg</option>
+                                    <option value="non-veg" {{ old('type', $meals->type ?? '') == 'non-veg' ? 'selected' : '' }}>Non-Veg</option>
                                 </select>
                             </div>
                             <div class="text-center"> <!-- Added div to center the button -->

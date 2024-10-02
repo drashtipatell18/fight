@@ -9,6 +9,7 @@ use App\Http\Controllers\PlacetoRaomController;
 use App\Http\Controllers\AirPortController;
 use App\Http\Controllers\MealsController;
 use App\Http\Controllers\PlaneMasterController;
+use App\Http\Controllers\SeatMasterController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -85,4 +86,13 @@ Route::post('/planemaster/insert',[PlaneMasterController::class,'planemasterStor
 Route::get('/planemaster/edit/{id}',[PlaneMasterController::class,'planemasterEdit'])->name('planemaster.edit');
 Route::post('/planemaster/update/{id}',[PlaneMasterController::class,'planemasterUpdate'])->name('planemaster.update');
 Route::get('/planemaster/delete/{id}',[PlaneMasterController::class,'planemasterDestroy'])->name('planemaster.destroy');
+
+// seat master
+
+Route::get('/seatmaster',[SeatMasterController::class,'seatmaster'])->name('seatmaster');
+Route::get('/seatmaster/create',[SeatMasterController::class,'seatmasterCreate'])->name('seatmaster.create');
+Route::post('/seatmaster/insert',[SeatMasterController::class,'seatmasterStore'])->name('seatmaster.store');
+Route::get('/seatmaster/edit/{id}',[SeatMasterController::class,'seatmasterEdit'])->name('seatmaster.edit');
+Route::post('/seatmaster/update/{id}',[SeatMasterController::class,'seatmasterUpdate'])->name('seatmaster.update');
+Route::get('/seatmaster/delete/{id}',[SeatMasterController::class,'seatmasterDestroy'])->name('seatmaster.destroy');
 
