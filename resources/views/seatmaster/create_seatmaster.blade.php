@@ -13,7 +13,7 @@
                         <form action="{{ isset($seatmaster) ? '/seatmaster/update/' . $seatmaster->id : '/seatmaster/insert' }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="plane_id">Plane ID</label>
+                                <label for="plane_id">Plane Name</label>
                                 <select class="form-control" id="plane_id" name="plane_id">
                                     <option value="">Select Plane Master</option>
                                     @foreach ($planes as $id => $name)

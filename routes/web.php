@@ -10,6 +10,7 @@ use App\Http\Controllers\AirPortController;
 use App\Http\Controllers\MealsController;
 use App\Http\Controllers\PlaneMasterController;
 use App\Http\Controllers\SeatMasterController;
+use App\Http\Controllers\JourneyMasterController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -95,4 +96,13 @@ Route::post('/seatmaster/insert',[SeatMasterController::class,'seatmasterStore']
 Route::get('/seatmaster/edit/{id}',[SeatMasterController::class,'seatmasterEdit'])->name('seatmaster.edit');
 Route::post('/seatmaster/update/{id}',[SeatMasterController::class,'seatmasterUpdate'])->name('seatmaster.update');
 Route::get('/seatmaster/delete/{id}',[SeatMasterController::class,'seatmasterDestroy'])->name('seatmaster.destroy');
+
+// Journey Master
+
+Route::get('/journey',[JourneyMasterController::class,'journey'])->name('journey');
+Route::get('/journey/create',[JourneyMasterController::class,'journeyCreate'])->name('journey.create');
+Route::post('/journey/insert',[JourneyMasterController::class,'journeyStore'])->name('journey.store');
+Route::get('/journey/edit/{id}',[JourneyMasterController::class,'journeyEdit'])->name('journey.edit');
+Route::post('/journey/update/{id}',[JourneyMasterController::class,'journeyUpdate'])->name('journey.update');
+Route::get('/journey/delete/{id}',[JourneyMasterController::class,'journeyDestroy'])->name('journey.destroy');
 

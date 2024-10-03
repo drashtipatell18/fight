@@ -27,7 +27,7 @@
                                 <tbody>
                                     @foreach ($seatmaster as $seat)
                                         <tr>
-                                            <td class="text-center">{{ $seat->plane_id }}</td>
+                                            <td class="text-center">{{ $seat->plane->name }}</td>
                                             <td class="text-center">{{ $seat->seat_number }}</td>
                                             <td class="text-center">{{ $seat->seat_type }}</td>
                                             <td class="text-center">{{ $seat->is_window }}</td>

@@ -169,6 +169,11 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Seat Master</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('journey')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Journey Master</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

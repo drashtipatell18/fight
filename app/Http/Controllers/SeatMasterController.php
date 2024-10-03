@@ -9,7 +9,7 @@ class SeatMasterController extends Controller
 {
     public function seatmaster()
     {
-        $seatmaster = SeatMaster::all();
+        $seatmaster = SeatMaster::with('plane')->get();
         return view('seatmaster.view_seatmaster', compact('seatmaster'));
     }
     public function seatmasterCreate()
