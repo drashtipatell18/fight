@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('stop_time');
             $table->string('cabin_bag');
             $table->string('checkin_bag');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

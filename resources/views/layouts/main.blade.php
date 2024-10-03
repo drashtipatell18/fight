@@ -174,6 +174,21 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Journey Master</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('booking')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Booking Master</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('bookingdetail')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Booking Detail</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('bookingpassenger')}}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Booking Passenger</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

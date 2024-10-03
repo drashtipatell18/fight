@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,9 @@ use App\Http\Controllers\MealsController;
 use App\Http\Controllers\PlaneMasterController;
 use App\Http\Controllers\SeatMasterController;
 use App\Http\Controllers\JourneyMasterController;
+use App\Http\Controllers\BookMasterController;
+use App\Http\Controllers\BookingDetailController;
+use App\Http\Controllers\BookingPassengerController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -106,3 +110,30 @@ Route::get('/journey/edit/{id}',[JourneyMasterController::class,'journeyEdit'])-
 Route::post('/journey/update/{id}',[JourneyMasterController::class,'journeyUpdate'])->name('journey.update');
 Route::get('/journey/delete/{id}',[JourneyMasterController::class,'journeyDestroy'])->name('journey.destroy');
 
+// Booking Master
+
+Route::get('/booking',[BookMasterController::class,'booking'])->name('booking');
+Route::get('/booking/create',[BookMasterController::class,'bookingCreate'])->name('booking.create');
+Route::post('/booking/insert',[BookMasterController::class,'bookingStore'])->name('booking.store');
+Route::get('/booking/edit/{id}',[BookMasterController::class,'bookingEdit'])->name('booking.edit');
+Route::post('/booking/update/{id}',[BookMasterController::class,'bookingUpdate'])->name('booking.update');
+Route::get('/booking/delete/{id}',[BookMasterController::class,'bookingDestroy'])->name('booking.destroy');
+
+// booking detail
+
+Route::get('/bookingdetail',[BookingDetailController::class,'bookingdetail'])->name('bookingdetail');
+Route::get('/bookingdetail/create',[BookingDetailController::class,'bookingdetailCreate'])->name('bookingdetail.create');
+Route::post('/bookingdetail/insert',[BookingDetailController::class,'bookingdetailStore'])->name('bookingdetail.store');
+Route::get('/bookingdetail/edit/{id}',[BookingDetailController::class,'bookingdetailEdit'])->name('bookingdetail.edit');
+Route::post('/bookingdetail/update/{id}',[BookingDetailController::class,'bookingdetailUpdate'])->name('bookingdetail.update');
+Route::get('/bookingdetail/delete/{id}',[BookingDetailController::class,'bookingdetailDestroy'])->name('bookingdetail.destroy');
+
+
+// booking passenger seat
+
+Route::get('/bookingpassenger',[BookingPassengerController::class,'bookingpassenger'])->name('bookingpassenger');
+Route::get('/bookingpassenger/create',[BookingPassengerController::class,'bookingpassengerCreate'])->name('bookingpassenger.create');
+Route::post('/bookingpassenger/insert',[BookingPassengerController::class,'bookingpassengerStore'])->name('bookingpassenger.store');
+Route::get('/bookingpassenger/edit/{id}',[BookingPassengerController::class,'bookingpassengerEdit'])->name('bookingpassenger.edit');
+Route::post('/bookingpassenger/update/{id}',[BookingPassengerController::class,'bookingpassengerUpdate'])->name('bookingpassenger.update');
+Route::get('/bookingpassenger/delete/{id}',[BookingPassengerController::class,'bookingpassengerDestroy'])->name('bookingpassenger.destroy');
