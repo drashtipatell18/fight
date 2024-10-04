@@ -10,7 +10,7 @@
                                 {{ isset($seatmaster) ? 'Edit Seat Master' : 'Add Seat Master' }}</h3>
                         </div>
                         <hr>
-                        <form action="{{ isset($seatmaster) ? '/seatmaster/update/' . $seatmaster->id : '/seatmaster/insert' }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ isset($seatmaster) ? '/seatmaster/update/' . $seatmaster->id : '/seatmaster/insert' }}" method="POST" enctype="multipart/form-data" id="createSeatMasterForm">
                             @csrf
                             <div class="form-group">
                                 <label for="plane_id">Plane Name</label>
@@ -63,5 +63,57 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#createSeatMasterForm").validate({
+                rules: {
+                    plane_id: {
+                        required: true,
+                    },
+                    seat_number: {
+                        required: true,
+                    },
+                    seat_type: {
+                        required: true,
+                    },
+                    seat_price: {
+                        required: true,
+                    },
+                    price_incrementer: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    plane_id: {
+                        required: "Please select a plane",
+                    },
+                    seat_number: {
+                        required: "Please enter a seat number",
+                    },
+                    seat_type: {
+                        required: "Please enter a seat type",
+                    },
+                    seat_price: {
+                        required: "Please enter a seat price",
+                    },
+                    price_incrementer: {
+                        required: "Please enter a price incrementer",
+                    },
+                },
+                errorElement: 'div',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        error.insertAfter(element);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid').removeClass('is-valid');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-valid').removeClass('is-invalid');
+                    }
+            });
+        });
+    </script>
 @endsection
+
 
