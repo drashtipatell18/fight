@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/chartist/css/chartist.min.css')}}">
     <link rel="stylesheet" href="{{ asset('plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
     <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 
     {{-- <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
@@ -28,23 +30,64 @@
     table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_desc_disabled{
         background: none !important;
     }
+    .nk-sidebar {
+        background-color: #ffffff; /* White background */
+        color: #0a08088f; /* Black text color */
+        width: 242px; /* Fixed width */
+        position: fixed; /* Fixed position */
+        height: 100%; /* Full height */
+        overflow-y: hidden; /* Scrollable content */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        transition: width 0.3s; /* Smooth transition for width changes */
+    }
+
+    .nk-sidebar:hover {
+        width: 242px; /* Slightly expand on hover */
+    }
+
+    .nk-sidebar .nk-nav-scroll ul {
+        list-style-type: none; /* Remove bullet points */
+        padding: 0; /* Remove padding */
+    }
+
+    .nk-sidebar .nk-nav-scroll ul li {
+        padding: 15px 20px; /* Padding for list items */
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .nk-sidebar .nk-nav-scroll ul li a {
+        color: #767878; /* Black link color */
+        text-decoration: none; /* Remove underline */
+        display: flex; /* Use flexbox for alignment */
+        align-items: center; /* Center items vertically */
+        font-weight: bold; /* Bold text for links */
+        padding: 0px 15px; /* Adjust padding for spacing */
+    }
+
+    .nk-sidebar .nk-nav-scroll ul li a i {
+        margin-right: 10px; /* Space between icon and text */
+    }
+
+    .nk-sidebar .nk-nav-scroll ul li a:hover {
+        background-color: #f0f0f0; /* Light grey hover background color */
+        color: #000000; /* Black hover text color */
+    }
+    .invalid-feedback {
+        display: block;
+        color: red;
+    }
+    .form-check-label {
+        color: #767878 !important;
+    }
+    .error {
+        color: red !important;
+        font-size: 80% !important;
+    }
+    .odd{
+        display: none !important;
+    }
 </style>
 <body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
 
     <!--**********************************
         Main wrapper start
@@ -127,7 +170,7 @@
         ***********************************-->
         <div class="nk-sidebar">
             <div class="nk-nav-scroll">
-                <ul class="metismenu" id="menu">
+                <ul class="" id="menu">
                     <li class="nav-label"></li>
                     <li>
                         <a href="{{ route('role')}}" aria-expanded="false">
@@ -226,7 +269,7 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="{{ asset('plugins/common/common.min.js')}}"></script>
+    {{-- <script src="{{ asset('plugins/common/common.min.js')}}"></script> --}}
     <script src="{{ asset('js/custom.min.js')}}"></script>
     <script src="{{ asset('js/settings.js')}}"></script>
     <script src="{{ asset('js/gleek.js')}}"></script>
@@ -250,8 +293,7 @@
     <script src="{{ asset('plugins/chartist/js/chartist.min.js')}}"></script>
     <script src="{{ asset('plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
     <script src="{{ asset('js/dashboard/dashboard-1.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 
     @stack('scripts')
 
