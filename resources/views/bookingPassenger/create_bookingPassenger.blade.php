@@ -12,7 +12,7 @@
                     </div>
                     <hr>
                     <form action="{{ isset($bookingPassenger) ? '/bookingpassenger/update/' . $bookingPassenger->id : '/bookingpassenger/insert' }}"
-                        method="POST" enctype="multipart/form-data">
+                        method="POST" enctype="multipart/form-data" id="createBookingPassengerForm">
                         @csrf
                         <div class="form-group">
                             <label for="booking_id">Booking ID</label>
@@ -89,5 +89,62 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#createBookingPassengerForm').validate({
+            rules: {
+                booking_id: {
+                    required: true,
+                },
+                booking_detail_id: {
+                    required: true,
+                },
+                seat_id: {
+                    required: true,
+                },
+                meal_id: {
+                    required: true,
+                },
+                price: {
+                    required: true,
+                },
+                status: {
+                    required: true,
+                },
+            },
+            messages: {
+                booking_id: {
+                    required: "Please select a booking",
+                },
+                booking_detail_id: {
+                    required: "Please select a booking detail",
+                },
+                seat_id: {
+                    required: "Please select a seat",
+                },
+                meal_id: {
+                    required: "Please select a meal",
+                },
+                price: {
+                    required: "Please enter a price",
+                },
+                status: {
+                    required: "Please select a status",
+                },
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-valid').removeClass('is-invalid');
+            }
+        });
+    });
+</script>
 @endsection
 

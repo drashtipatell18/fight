@@ -12,7 +12,7 @@
                     </div>
                     <hr>
                     <form action="{{ isset($bookingdetail) ? '/bookingdetail/update/' . $bookingdetail->id : '/bookingdetail/insert' }}"
-                        method="POST" enctype="multipart/form-data">
+                        method="POST" enctype="multipart/form-data" id="createBookingDetailForm">
                         @csrf
                         <div class="form-group">
                             <label for="booking_id">Booking ID</label>
@@ -85,5 +85,83 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#createBookingDetailForm').validate({
+            rules: {
+                booking_id: {
+                    required: true,
+                },
+                first_name: {
+                    required: true,
+                },
+                last_name: {
+                    required: true,
+                },
+                gender: {
+                    required: true,
+                },
+                dob: {
+                    required: true,
+                },
+                country: {
+                    required: true,
+                },
+                mobile_no: {
+                    required: true,
+                },  
+                email1: {
+                    required: true,
+                },
+                email2: {
+                    required: true,
+                },
+            },
+            messages: {
+                booking_id: {
+                    required: "Please select a booking",
+                },
+                first_name: {
+                    required: "Please enter a first name",
+                },
+                last_name: {
+                    required: "Please enter a last name",
+                },
+                gender: {
+                    required: "Please select a gender",
+                },
+                dob: {
+                    required: "Please enter a date of birth",
+                },
+                country: {
+                    required: "Please enter a country",
+                },
+                mobile_no: {
+                    required: "Please enter a mobile number",
+                },
+                email1: {
+                    required: "Please enter an email address",
+                },
+                email2: {
+                    required: "Please enter an email address",
+                },
+
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-valid').removeClass('is-invalid');
+            }
+
+        });
+
+    });
+</script>
 @endsection
 

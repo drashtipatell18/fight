@@ -11,7 +11,7 @@
                     </div>
                     <hr>
                     <form action="{{ isset($bookings) ? '/booking/update/' . $bookings->id : '/booking/insert' }}"
-                        method="POST" enctype="multipart/form-data">
+                        method="POST" enctype="multipart/form-data" id="createBookingForm">
                         @csrf
                         <div class="form-group">
                             <label for="journey_id">Journey ID</label>
@@ -68,4 +68,61 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $("#createBookingForm").validate({
+            rules: {
+                journey_id: {
+                    required: true,
+                },
+                total_amount: {
+                    required: true,
+                },
+                discount: {
+                    required: true,
+                },
+                paid_amount: {
+                    required: true,
+                },
+                booking_date: {
+                    required: true,
+                },
+                booking_time: {
+                    required: true,
+                },
+            },
+            messages: {
+                journey_id: {
+                    required: "Please select a journey",
+                },
+                total_amount: {
+                    required: "Please enter a total amount",
+                },
+                discount: {
+                    required: "Please enter a discount",
+                },
+                paid_amount: {
+                    required: "Please enter a paid amount",
+                },
+                booking_date: {
+                    required: "Please enter a booking date",
+                },
+                booking_time: {
+                    required: "Please enter a booking time",
+                },
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                error.insertAfter(element);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid').removeClass('is-valid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-valid').removeClass('is-invalid');
+            }
+        });
+    });
+</script>
 @endsection

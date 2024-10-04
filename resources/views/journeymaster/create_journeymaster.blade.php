@@ -10,7 +10,7 @@
                                 {{ isset($journey) ? 'Edit Journey Master' : 'Add Journey Master' }}</h3>
                         </div>
                         <hr>
-                        <form action="{{ isset($journey) ? '/journey/update/' . $journey->id : '/journey/insert' }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ isset($journey) ? '/journey/update/' . $journey->id : '/journey/insert' }}" method="POST" enctype="multipart/form-data" id="createJourneyForm">
                             @csrf
                             <div class="form-group">
                                 <label for="from_city">From City</label>
@@ -81,19 +81,97 @@
             </div>
         </div>
     </div>
-@endsection
-@section('script')
     <script>
         $(document).ready(function() {
-            $('#departure_datetime').datetimepicker({
-                format: 'Y-m-d H:i:s'
-            });
-            $('#arrival_datetime').datetimepicker({
-                format: 'Y-m-d H:i:s'
-            });
 
-            $('#date').datetimepicker({
-                format: 'Y-m-d'
+            $("#createJourneyForm").validate({
+                rules: {
+                    from_city: {
+                        required: true,
+                    },
+                    to_city: {
+                        required: true,
+                    },
+                    plane_id: {
+                        required: true,
+                    },
+                    price: {
+                        required: true,
+                    },
+                    date: {
+                        required: true,
+                    },
+                    departure_datetime: {
+                        required: true,
+                    },
+                    arrival_datetime: {
+                        required: true,
+                    },
+                    total_stop: {
+                        required: true,
+                    },
+                    stop_name: {
+                        required: true,
+                    },
+                    stop_time: {
+                        required: true,
+                    },
+                    cabin_bag: {
+                        required: true,
+                    },
+                    checkin_bag: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    from_city: {
+                        required: "Please enter a from city",
+                    },
+                    to_city: {
+                        required: "Please enter a to city",
+                    },
+                    plane_id: {
+                        required: "Please select a plane",
+                    },
+                    price: {
+                        required: "Please enter a price",
+                    },
+                    date: {
+                        required: "Please enter a date",
+                    },
+                    departure_datetime: {
+                        required: "Please enter a departure datetime",
+                    },
+                    arrival_datetime: {
+                        required: "Please enter a arrival datetime",
+                    },
+                    total_stop: {
+                        required: "Please enter a total stop",
+                    },
+                    stop_name: {
+                        required: "Please enter a stop name",
+                    },
+                    stop_time: {
+                        required: "Please enter a stop time",
+                    },
+                    cabin_bag: {
+                        required: "Please enter a cabin bag",
+                    },
+                    checkin_bag: {
+                        required: "Please enter a checkin bag",
+                    },
+                },
+                errorElement: 'div',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    error.insertAfter(element);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid').removeClass('is-valid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-valid').removeClass('is-invalid');
+                }
             });
         });
     </script>

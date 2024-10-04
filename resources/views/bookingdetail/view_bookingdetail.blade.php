@@ -8,7 +8,7 @@
                     <h4 class="card-title">Booking Detail List</h4>
                     <div class="table-responsive">
                         <div class="text-right mb-3"> <!-- Aligns the button to the right -->
-                            <a href="{{ route('bookingdetail.create') }}" class="btn btn-primary">Add Booking Detail</a>
+                            <a href="{{ route('bookingdetail.create') }}" class="btn btn-primary btn-sm">Add Booking Detail</a>
                         </div>
                         <table class="table table-striped table-bordered zero-configuration" id="userTable">
                             <thead>
@@ -40,8 +40,8 @@
                                         <td>{{ $bookingdetail->email2 }}</td>
                                         <td>{{ $bookingdetail->gender }}</td>
                                         <td>
-                                            <a href="{{ route('bookingdetail.edit', $bookingdetail->id) }}" class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('bookingdetail.destroy', $bookingdetail->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                            <a href="{{ route('bookingdetail.edit', $bookingdetail->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="{{ route('bookingdetail.destroy', $bookingdetail->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
 
                                         </td>
                                     </tr>

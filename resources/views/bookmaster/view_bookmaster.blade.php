@@ -19,7 +19,7 @@
                     <div class="table-responsive">
                         <div class="text-right mb-3">
                             <!-- Aligns the button to the right -->
-                            <a href="{{ route('booking.create') }}" class="btn btn-primary">Add Booking Master</a>
+                            <a href="{{ route('booking.create') }}" class="btn btn-primary btn-sm">Add Booking Master</a>
                         </div>
                         <table class="table table-striped table-bordered zero-configuration" id="userTable">
                             <thead>
@@ -44,9 +44,9 @@
                                     <td class="text-center">{{ $booking->booking_time }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('booking.edit', $booking->id) }}"
-                                            class="btn btn-warning">Edit</a>
+                                            class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('booking.destroy', $booking->id) }}"
-                                            class="btn btn-danger">Delete</a>
+                                            class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
 

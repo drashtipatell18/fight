@@ -28,9 +28,8 @@ class BookingDetailController extends Controller
             'dob' => 'required',
             'country' => 'required',
             'mobile_no' => 'required',
-            'alternate_mobile_no' => 'required',
             'email1' => 'required',
-            'address' => 'required',
+            'email2' => 'required',
         ]);
 
         $bookingdetail = BookingDetail::create([
@@ -53,7 +52,8 @@ class BookingDetailController extends Controller
     public function bookingdetailEdit($id)
     {
         $bookingdetail = BookingDetail::find($id);
-        return view('bookingdetail.create_bookingdetail', compact('bookingdetail'));
+        $bookingmasters = BookingMaster::pluck('total_amount', 'id');
+        return view('bookingdetail.create_bookingdetail', compact('bookingdetail', 'bookingmasters'));
     }
     public function bookingdetailUpdate(Request $request, $id)
     {
@@ -64,10 +64,8 @@ class BookingDetailController extends Controller
             'dob' => 'required',
             'country' => 'required',
             'mobile_no' => 'required',
-            'alternate_mobile_no' => 'required',
             'email1' => 'required',
             'email2' => 'required',
-            'address' => 'required',
         ]);
         $bookingdetail = BookingDetail::find($id);
         $bookingdetail->update([
