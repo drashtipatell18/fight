@@ -10,7 +10,7 @@
                                 {{ isset($plane) ? 'Edit Plane' : 'Add Plane' }}</h3>
                         </div>
                         <hr>
-                        <form action="{{ isset($plane) ? '/planemaster/update/' . $plane->id : '/planemaster/insert' }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ isset($plane) ? '/planemaster/update/' . $plane->id : '/planemaster/insert' }}" method="POST" enctype="multipart/form-data" id="createPlaneForm">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -52,4 +52,38 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#createPlaneForm").validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    company_name: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    name: {
+                        required: "Please enter a name",
+                    },
+                    company_name: {
+                        required: "Please enter a company name",
+                    },
+                },
+                errorElement: 'div',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        error.insertAfter(element);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid').removeClass('is-valid');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-valid').removeClass('is-invalid');
+                }
+            });
+
+        });
+    </script>
 @endsection

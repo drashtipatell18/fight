@@ -83,9 +83,9 @@
         color: red !important;
         font-size: 80% !important;
     }
-    .odd{
+    /* .odd{
         display: none !important;
-    }
+    } */
 </style>
 <body>
 

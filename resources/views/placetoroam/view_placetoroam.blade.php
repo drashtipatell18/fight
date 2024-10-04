@@ -18,7 +18,7 @@
                         <h4 class="card-title">Place To Roam List</h4>
                         <div class="table-responsive">
                             <div class="text-right mb-3"> <!-- Aligns the button to the right -->
-                                <a href="{{ route('placetoroam.create') }}" class="btn btn-primary">Add Place To Roam</a>
+                                <a href="{{ route('placetoroam.create') }}" class="btn btn-primary btn-sm">Add Place To Roam</a>
                             </div>
                             <table class="table table-striped table-bordered zero-configuration" id="userTable">
                                 <thead>

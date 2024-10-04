@@ -38,8 +38,8 @@
                                             <td class="text-center">{{ $meal->price }}</td>
                                             <td class="text-center">{{ $meal->type }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('meals.edit', $meal->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('meals.destroy', $meal->id) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('meals.edit', $meal->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('meals.destroy', $meal->id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

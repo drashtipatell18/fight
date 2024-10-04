@@ -9,7 +9,7 @@
                         <div class="table-responsive">
 
                             <div class="text-right mb-3"> <!-- Aligns the button to the right -->
-                                <a href="{{ route('seatmaster.create') }}" class="btn btn-primary">Add Seat Master</a>
+                                <a href="{{ route('seatmaster.create') }}" class="btn btn-primary btn-sm">Add Seat Master</a>
                             </div>
                             <table class="table table-striped table-bordered zero-configuration" id="userTable">
                                 <thead>
@@ -35,8 +35,8 @@
                                             <td class="text-center">{{ $seat->seat_price }}</td>
                                             <td class="text-center">{{ $seat->price_incrementer }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('seatmaster.edit', $seat->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('seatmaster.destroy', $seat->id) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('seatmaster.edit', $seat->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('seatmaster.destroy', $seat->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

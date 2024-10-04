@@ -18,7 +18,7 @@
                         <h4 class="card-title">Journey Master List</h4>
                         <div class="table-responsive">
                             <div class="text-right mb-3"> <!-- Aligns the button to the right -->
-                                <a href="{{ route('journey.create') }}" class="btn btn-primary">Add Journey Master</a>
+                                <a href="{{ route('journey.create') }}" class="btn btn-primary btn-sm">Add Journey Master</a>
                             </div>
                             <table class="table table-striped table-bordered zero-configuration" id="userTable">
                                 <thead>
@@ -48,8 +48,8 @@
                                             <td class="text-center">{{ $journeymaster->total_stop }}</td>
                                             <td class="text-center">{{ $journeymaster->stop_name }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('journey.edit', $journeymaster->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('journey.destroy', $journeymaster->id) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('journey.edit', $journeymaster->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('journey.destroy', $journeymaster->id) }}" class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
