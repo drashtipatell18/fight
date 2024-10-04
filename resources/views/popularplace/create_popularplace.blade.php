@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="banner_text">Banner Text</label>
-                                <input type="banner_text" class="form-control" id="banner_text" name="banner_text"
+                                <input type="text" class="form-control" id="banner_text" name="banner_text"
                                     value="{{ old('banner_text', $popularplaces->banner_text ?? '') }}">
                             </div>
                             @if (isset($popularplaces) && $popularplaces->image)
@@ -84,6 +84,7 @@
                         name: {
                             required: "Please enter a name",
                         },
+
                         banner_text: {
                             required: "Please enter a banner text",
                         },
@@ -101,14 +102,14 @@
                         if (element.type === "radio") {
                             $(element).closest('.form-group').find('input[type="radio"]').addClass("is-invalid");
                         } else {
-                            $(element).addClass("is-invalid");
+                            $(element).addClass("is-invalid").removeClass("is-valid");
                         }
                     },
                     unhighlight: function(element, errorClass, validClass) {
                         if (element.type === "radio") {
                             $(element).closest('.form-group').find('input[type="radio"]').removeClass("is-invalid");
                         } else {
-                            $(element).removeClass("is-invalid");
+                            $(element).removeClass("is-invalid").addClass("is-valid");
                         }
                     }
                 });

@@ -12,7 +12,7 @@
                         <hr>
                         <form
                             action="{{ isset($placetoroams) ? '/placetoroam/update/' . $placetoroams->id : '/placetoroam/insert' }}"
-                            method="POST" enctype="multipart/form-data">
+                            method="POST" enctype="multipart/form-data" id="createplacetoroamform">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Title</label>
@@ -24,7 +24,7 @@
                                 <select class="form-control" id="popular_place_id" name="popular_place_id">
                                     <option value="">Select Popular Place</option>
                                     @foreach ($popularplaces as $key => $popularplace)
-                                        <option value="{{ $popularplace->id ?? $key }}" 
+                                        <option value="{{ $popularplace->id ?? $key }}"
                                             {{ isset($placetoroams) && $placetoroams->popular_place_id == ($popularplace->id ?? $key) ? 'selected' : '' }}>
                                             {{ is_object($popularplace) ? $popularplace->name : $popularplace }}
                                         </option>
@@ -44,7 +44,7 @@
                                 <label for="exploration_time">Exploration Time</label>
                                 <input type="time" class="form-control" id="exploration_time" name="exploration_time"
                                     value="{{ old('exploration_time', $placetoroams->exploration_time ?? '') }}">
-                            </div>  
+                            </div>
                             @if (isset($placetoroams) && $placetoroams->image)
                                 <img id="imagePreview" src="{{ asset('images/' . $placetoroams->image) }}"
                                     alt="Image Preview" style="max-width: 20%; margin-top: 10px;">
@@ -71,71 +71,44 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
-            $.validator.addMethod("passwordFormat", function(value, element) {
-                    var result = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,-])[A-Za-z\d@$!%*?&.,-]{8,}$/
-                        .test(value);
-                    console.log("Password:", value, "Validation result:", result);
-                    return this.optional(element) || result;
-                },
-                "The password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, a number, and a special character such as @$!%*?&.,-."
-            );
-
-            $.validator.addMethod("customEmail", function(value, element) {
-                return this.optional(element) || /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-            }, "Please enter a valid email address");
-
-            $.validator.addMethod("customPhone", function(value, element) {
-                return this.optional(element) || /^[0-9]{9}$/.test(value);
-            }, "Please enter at least 9 characters.");
-
-            // Initialize jQuery Validation plugin on the form
-            $('#createuserform').validate({
-                rules: {
-                    name: "required",
-                    email: {
+            if (typeof $.fn.validate === 'undefined') {
+                console.error("jQuery Validation plugin is not loaded.");
+            } else {
+                $("#createplacetoroamform").validate({
+                    rules: {
+                    title: {
                         required: true,
-                        customEmail: true
                     },
-                    phone: {
+                    popular_place_id: {
                         required: true,
-                        digits: true,
-                        customPhone: true
                     },
-                    // employee: "required",
-                    password: {
+                    location: {
                         required: true,
-                        minlength: 8, // Adjusted minlength to 8 characters
-                        passwordFormat: true // Apply custom passwordFormat rule
-                    }
+                    },
+                    exploration_time: {
+                        required: true,
+                    },
                 },
                 messages: {
-                    username: "Por favor, ingrese el nombre de usuario",
-                    name: "Por favor, ingrese el nombre",
-                    email: {
-                        required: "Por favor, ingrese el correo",
-                        email: "Por favor, ingrese un correo válido",
-                        unique: 'El correo electrónico ya está en uso.',
-
+                    title: {
+                        required: "Please enter a title",
                     },
-                    phone: {
-                        required: "Por favor, ingrese el teléfono",
-                        digits: "Por favor, ingrese solo números"
+                    popular_place_id: {
+                        required: "Please select a popular place",
                     },
-                    employee: "Por favor, seleccione un empleado",
-                    password: {
-                        required: "Por favor, ingrese la contraseña",
-                        minlength: "La contraseña debe tener al menos 8 caracteres" // Updated minlength message
-                    }
+                    location: {
+                        required: "Please enter a location",
+                    },
+                    exploration_time: {
+                        required: "Please enter a exploration time",
+                    },
                 },
-                errorElement: "span",
+                errorElement: 'div',
                 errorPlacement: function(error, element) {
-                    console.log("Error for element:", element.attr("name"), "Message:", error.text());
-                    error.addClass("invalid-feedback");
-                    element.closest(".form-group").append(error);
+                    error.addClass('invalid-feedback');
+                    error.insertAfter(element);
                 },
                 highlight: function(element, errorClass, validClass) {
                     $(element).addClass("is-invalid").removeClass("is-valid");
@@ -143,19 +116,8 @@
                 unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass("is-invalid").addClass("is-valid");
                 }
-            });
-            $('#image').change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#imagePreview').attr('src', e.target.result).show();
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    $('#imagePreview').hide();
-                }
-            });
+                });
+            }
         });
     </script>
 @endsection

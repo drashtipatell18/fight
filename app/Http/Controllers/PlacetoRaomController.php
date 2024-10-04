@@ -27,7 +27,6 @@ class PlacetoRaomController extends Controller
             'description'      => 'required',
             'location'         => 'required',
             'exploration_time' => 'required',
-            'dob'              => 'required',
             'popular_place_id' => 'required',
         ]);
 
@@ -37,7 +36,7 @@ class PlacetoRaomController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->move('images', $filename);
         }
-        
+
         $placetoroam = places_to_roam::create([
             'title'            => $request->input('title'),
             'description'      => $request->input('description'),
@@ -67,7 +66,7 @@ class PlacetoRaomController extends Controller
             'popular_place_id' => 'required',
         ]);
         $placetoroam = places_to_roam::find($id);
-        $filename = $placetoroam->image; 
+        $filename = $placetoroam->image;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();

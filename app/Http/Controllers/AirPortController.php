@@ -25,7 +25,6 @@ class AirPortController extends Controller
 
             'name' => 'required',
             'city' => 'required',
-            'description' => 'required',
         ]);
         $filename = '';
         if ($request->hasFile('image')) {
@@ -52,11 +51,10 @@ class AirPortController extends Controller
         $request->validate([
             'name' => 'required',
             'city' => 'required',
-            'description' => 'required',
         ]);
         $airport = airport::find($id);
-        
-        $filename = $airport->image; 
+
+        $filename = $airport->image;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();

@@ -12,7 +12,7 @@
                         <hr>
                         <form
                             action="{{ isset($airports) ? '/airport/update/' . $airports->id : '/airport/insert' }}"
-                            method="POST" enctype="multipart/form-data">
+                            method="POST" enctype="multipart/form-data" id="createairportform">
                             @csrf
                             <div class="form-group">
                                 <label for="name">name</label>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="text">City</label>
-                                <input type="city" class="form-control" id="city" name="city"
+                                <input type="text" class="form-control" id="city" name="city"
                                     value="{{ old('city', $airports->city ?? '') }}">
                             </div>
                             @if (isset($airports) && $airports->image)
@@ -54,91 +54,43 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
-            $.validator.addMethod("passwordFormat", function(value, element) {
-                    var result = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,-])[A-Za-z\d@$!%*?&.,-]{8,}$/
-                        .test(value);
-                    console.log("Password:", value, "Validation result:", result);
-                    return this.optional(element) || result;
-                },
-                "The password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, a number, and a special character such as @$!%*?&.,-."
-            );
+            console.log("Document ready, initializing validation...");
 
-            $.validator.addMethod("customEmail", function(value, element) {
-                return this.optional(element) || /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-            }, "Please enter a valid email address");
-
-            $.validator.addMethod("customPhone", function(value, element) {
-                return this.optional(element) || /^[0-9]{9}$/.test(value);
-            }, "Please enter at least 9 characters.");
-
-            // Initialize jQuery Validation plugin on the form
-            $('#createuserform').validate({
-                rules: {
-                    name: "required",
-                    email: {
-                        required: true,
-                        customEmail: true
+            if (typeof $.fn.validate === 'undefined') {
+                console.error("jQuery Validation plugin is not loaded.");
+            } else {
+                $("#createairportform").validate({
+                    rules: {
+                        name: {
+                            required: true,
+                        },
+                        city: {
+                            required: true,
+                        },
                     },
-                    phone: {
-                        required: true,
-                        digits: true,
-                        customPhone: true
+                    messages: {
+                        name: {
+                            required: "Please enter a name",
+                        },
+                        city: {
+                            required: "Please enter a city",
+                        },
                     },
-                    // employee: "required",
-                    password: {
-                        required: true,
-                        minlength: 8, // Adjusted minlength to 8 characters
-                        passwordFormat: true // Apply custom passwordFormat rule
+                    errorElement: 'div',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        error.insertAfter(element);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid').removeClass('is-valid');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid').addClass('is-valid');
                     }
-                },
-                messages: {
-                    username: "Por favor, ingrese el nombre de usuario",
-                    name: "Por favor, ingrese el nombre",
-                    email: {
-                        required: "Por favor, ingrese el correo",
-                        email: "Por favor, ingrese un correo válido",
-                        unique: 'El correo electrónico ya está en uso.',
-
-                    },
-                    phone: {
-                        required: "Por favor, ingrese el teléfono",
-                        digits: "Por favor, ingrese solo números"
-                    },
-                    employee: "Por favor, seleccione un empleado",
-                    password: {
-                        required: "Por favor, ingrese la contraseña",
-                        minlength: "La contraseña debe tener al menos 8 caracteres" // Updated minlength message
-                    }
-                },
-                errorElement: "span",
-                errorPlacement: function(error, element) {
-                    console.log("Error for element:", element.attr("name"), "Message:", error.text());
-                    error.addClass("invalid-feedback");
-                    element.closest(".form-group").append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass("is-invalid").removeClass("is-valid");
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass("is-invalid").addClass("is-valid");
-                }
-            });
-            $('#image').change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#imagePreview').attr('src', e.target.result).show();
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    $('#imagePreview').hide();
-                }
-            });
+                });
+            }
         });
     </script>
 @endsection
