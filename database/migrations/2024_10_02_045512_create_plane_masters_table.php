@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('company_name');
             $table->integer('food_facility');
+            $table->integer('total_seat');
             $table->string('image');
             $table->timestamps();
             $table->softDeletes();

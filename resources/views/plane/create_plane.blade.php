@@ -26,6 +26,10 @@
                                     <input type="checkbox" class="form-check-input" id="food_facility" name="food_facility" value="1" {{ old('food_facility', $plane->food_facility ?? 0) ? 'checked' : '' }} style="margin-left: 20px;">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="total_seat">Total Seat</label>
+                                <input type="number" class="form-control" id="total_seat" name="total_seat" value="{{ old('total_seat', $plane->total_seat ?? '') }}">
+                            </div>
                             @if (isset($plane) && $plane->image)
                                 <img id="imagePreview" src="{{ asset('images/' . $plane->image) }}" alt="Image Preview"
                                     style="max-width: 20%; margin-top: 10px;">

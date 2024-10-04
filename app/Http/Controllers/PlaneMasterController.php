@@ -21,6 +21,7 @@ class PlaneMasterController extends Controller
             'name' => 'required',
             'company_name' => 'required',
             'food_facility' => 'required',
+            'total_seat' => 'required',
             'image' => 'required',
         ]);
         $filename = '';
@@ -30,9 +31,10 @@ class PlaneMasterController extends Controller
             $image->move('images', $filename);
         }
         $plane = PlaneMaster::create([
-            'name' => $request->name,
-            'company_name' => $request->company_name,
-            'food_facility' => $request->food_facility,
+            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
+            'food_facility' => $request->input('food_facility'),
+            'total_seat' => $request->input('total_seat'),
             'image' => $filename,
         ]);
         session()->flash('success', 'Plane Master added successfully!');
@@ -49,12 +51,14 @@ class PlaneMasterController extends Controller
             'name' => 'required',
             'company_name' => 'required',
             'food_facility' => 'required',
+
         ]);
         $plane = PlaneMaster::find($id);
         $plane->update([
-            'name' => $request->name,
-            'company_name' => $request->company_name,
-            'food_facility' => $request->food_facility,
+            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
+            'food_facility' => $request->input('food_facility'),
+            'total_seat' => $request->input('total_seat'),
         ]);
         session()->flash('success', 'Plane Master updated successfully!');
         return redirect()->route('planemaster');

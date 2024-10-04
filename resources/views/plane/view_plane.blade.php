@@ -17,6 +17,7 @@
                                         <th class="text-center">Name</th>
                                         <th class="text-center">Company Name</th>
                                         <th class="text-center">Food Facility</th>
+                                        <th class="text-center">Total Seat</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -27,6 +28,7 @@
                                             <td class="text-center">{{ $item->name }}</td>
                                             <td class="text-center">{{ $item->company_name }}</td>
                                             <td class="text-center">{{ $item->food_facility }}</td>
+                                            <td class="text-center">{{ $item->total_seat }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('planemaster.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                                                 <a href="{{ route('planemaster.destroy', $item->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>

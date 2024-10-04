@@ -10,5 +10,5 @@ class PlaneMaster extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'plane_masters';
-    protected $fillable = ['name','company_name','food_facility','image'];
+    protected $fillable = ['name','company_name','food_facility','image','total_seat'];
 }
