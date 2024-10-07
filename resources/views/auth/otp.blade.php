@@ -8,43 +8,50 @@
             <div class="container">
                 <div class="row justify-content-center">
                 <div class="col-md-12">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="booking-form">
-                        <h3 class="text-center mb-3" style="color: #98c9ee;">Login</h3>
+                        <h3 class="text-center mb-3" style="color: #98c9ee;">OTP Verification</h3>
                         <hr>
-                        <form id="loginForm" action="{{ route('loginstore') }}" method="POST">
+                        <form action="{{ route('verifyOtp') }}" method="POST" id="otpForm">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <span class="form-label">Phone Number</span>
-                                    <input class="form-control" type="tel" name="phone" placeholder="Enter your mobile number">
+                                    <span class="form-label">OTP</span>
+                                    <input class="form-control" type="tel" placeholder="Enter your OTP" name="otp">
                                 </div>
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="submit-btn">Login</button>
+                                <button class="submit-btn">Verify</button>
                             </div>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-
     <script>
         $(document).ready(function() {
-            $("#loginForm").validate({
+            $("#otpForm").validate({
                 rules: {
-                    phone: {
+                    otp: {
                         required: true,
                         digits: true,
-                        minlength: 10,
                     }
                 },
                 messages: {
-                    phone: {
-                        required: "Please enter your phone number",
-                        digits: "Please enter a valid phone number",
-                        minlength: "Your phone number must be at least 10 digits",
+                    otp: {
+                        required: "Please enter your OTP",
+                        digits: "Please enter a valid OTP",
                     }
                 },
                 errorElement: 'div',

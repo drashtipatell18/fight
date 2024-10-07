@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Otp;
+use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -99,6 +101,88 @@ class UserController extends Controller
         return redirect()->back();
         session()->flash('danger', 'User Delete successfully!');
         return redirect()->back();
+    }
+
+    public function login(){
+        return view('auth.login');
+    }
+
+    public function Otp(){
+        return view('auth.otp');
+    }
+
+    public function loginstore(Request $request)
+    {
+        // dd($request->all());
+        $request->validate(['phone' => 'required|numeric']);
+
+        // Format phone number to E.164
+        $phoneNumber = $this->formatPhoneNumber($request->phone);
+
+        // Generate OTP
+        $otp = rand(100000, 999999);
+
+        // Save OTP to database
+        Otp::create([
+            'phone' => $phoneNumber,
+            'otp' => $otp,
+            'expires_at' => now()->addMinutes(10),
+        ]);
+
+        // Send OTP via SMS
+        $this->sendSms($phoneNumber, $otp);
+
+        session()->flash('success', 'OTP sent successfully!');
+        return redirect()->route('otp');
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        // Validate input
+
+        $request->validate([
+            'otp' => 'required|numeric',
+        ]);
+
+        // Check OTP
+        $otpRecord = Otp::where('otp', $request->otp)
+                        ->where('expired_at', '>', now())
+                        ->first();
+        if ($otpRecord) {
+            // OTP is valid
+            return redirect()->route('role');
+        }
+
+        // Redirect back with an error message
+        session()->flash('danger', 'Invalid OTP');
+        return redirect()->back();
+    }
+
+    private function sendSms($phoneNumber, $otp)
+    {
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_TOKEN');
+        $from = env('TWILIO_FROM');
+
+        $client = new Client($sid, $token);
+        $client->messages->create($phoneNumber, [
+            'from' => $from,
+            'body' => "Your OTP is: $otp"
+        ]);
+    }
+
+    private function formatPhoneNumber($phoneNumber)
+    {
+        // Assuming the phone number is a 10-digit number without country code
+        // Add your country code here, e.g., +1 for USA
+        $countryCode = '+91';
+        return $countryCode . $phoneNumber;
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     // public function myProfile()

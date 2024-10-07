@@ -36,6 +36,11 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/loginstore', [UserController::class, 'loginstore'])->name('loginstore');
+Route::post('/verifyOtp', [UserController::class, 'verifyOtp'])->name('verifyOtp');
+Route::get('/otp', [UserController::class, 'Otp'])->name('otp');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/user', [UserController::class, 'users'])->name('user');
 Route::get('/user/create',[UserController::class,'userCreate'])->name('create.user');
 Route::post('/user/insert',[UserController::class,'userInsert'])->name('insert.user');
